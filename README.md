@@ -1,140 +1,99 @@
-# personal_expense_tracker
-# Personal Expense Tracker
+# **Personal Expense Tracker**
 
-## Project Description
-The **Personal Expense Tracker** is a Python-based application designed to help users efficiently track and manage their personal expenses. Users can add daily expenses, view their expenses by category, and get a monthly summary to analyze their spending habits.
-
-The application uses a text file (`expenses.txt`) to store expense data, ensuring persistence across sessions. The console-based interface is enhanced with color-coded outputs for better usability and readability.
+This Python application provides a command-line interface for tracking expenses, viewing summaries, and exporting detailed reports as PDF files.
 
 ---
 
-## Features Implemented
-- **Add Expense**
-  - Input expense details: category, amount, and date.
-  - Validate date input format.
-  - Persist expense data into a text file.
+## **Features**
 
-- **View Expenses by Category**
-  - Categorize and display expenses stored in the file.
-  - Show a breakdown of amounts and dates for each category.
+- **Add an Expense**  
+  Input details like category, amount, and date (YYYY-MM-DD) to save an expense.
+  
+- **View Expenses by Category**  
+  Display all recorded expenses organized by category.
 
-- **Monthly Summary**
-  - Summarize total expenses and a category-wise breakdown for a specific month.
-  - Provide insights into monthly spending.
+- **Monthly Summary**  
+  Input a month and year to see total expenses for that period, categorized with subtotals.
 
-- **User-Friendly Console Interface**
-  - Includes colored prompts and messages using `colorama` for better readability.
+- **Export Summary to PDF**  
+  Generate and save a PDF containing the monthly expense summary with the totals and timestamp.
 
 ---
 
-## How to Run the Project
+## **Code Overview**
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/amanmauryas/personal_expense_tracker
-   cd personal_expense_tracker
-   ```
+### **Modules Used**
+- `os`: For checking and creating files.  
+- `datetime`: For validating and managing dates.  
+- `colorama`: For colorful CLI output.  
+- `reportlab`: For generating PDF reports.
 
-2. **Ensure Python is Installed**:
-   - Required version: Python 3.6 or later.
-   - To check, run:
-     ```bash
-     python --version
-     ```
+### **Key Functions**
 
-3. **Install Dependencies**:
-   - Use pip to install the required `colorama` library:
-     ```bash
-     pip install colorama
-     ```
+#### **`ensure_file()`**
+Ensures that the expense tracking file (`expenses.txt`) exists. If not, it creates one with a header line.
 
-4. **Run the Application**:
-   ```bash
-   python expense_tracker.py
-   ```
+#### **`add_expense()`**
+Prompts the user to input expense details (category, amount, and date). The function validates the date format and saves the details into `expenses.txt`.  
+**Example**:  
+```plaintext
+Enter category (e.g., Food, Travel): Travel  
+Enter amount: 200  
+Enter date (YYYY-MM-DD): 2024-12-24  
+view_expenses()
+Displays all recorded expenses grouped by their respective categories.
 
----
+monthly_summary()
+Asks for a month and year (MM-YYYY) and calculates total expenses within that period. Expenses are displayed by category with subtotals.
 
-## Usage Instructions
+export_summary_to_pdf(month_year)
+Takes a month-year as input.
+Extracts relevant expense data from the file.
+Generates a professionally formatted PDF using reportlab.
+Saves the PDF with the filename format Expense_Summary_MM-YYYY.pdf.
+Example Output PDF:
 
-1. **Main Menu**:
-   - Run the program to view the main menu with the following options:
-     ```
-     Welcome to Personal Expense Tracker!
-     1. Add Expense
-     2. View Expenses
-     3. Monthly Summary
-     4. Exit
-     ```
+sql
+Copy code
+Title: Expense Summary  
+Date Generated: [Current Date and Time]  
 
-2. **Add Expense**:
-   - Select option `1` and enter the requested details.
-   - Example:
-     ```
-     Enter category (e.g., Food, Travel): Food
-     Enter amount: 200
-     Enter date (YYYY-MM-DD): 2024-12-24
-     Expense added successfully!
-     ```
+Category           Total Amount  
+--------------------------------  
+Food               150.00  
+Travel             200.00  
+Total Expenses:    350.00  
+main_menu()
+Provides the main interface with options to add expenses, view records, generate summaries, and export to PDF.
 
-3. **View Expenses**:
-   - Select option `2` to see expenses categorized.
-   - Example output:
-     ```
-     Expenses:
+Options:
 
-     Food:
-     - Amount: 200 - Date: 2024-12-24
+plaintext
+Copy code
+1. Add Expense  
+2. View Expenses  
+3. Monthly Summary  
+4. Export Summary to PDF  
+5. Exit  
+Usage Instructions
+Setup
+Requirements
+Install Python 3.6+
+Install the required libraries:
+bash
+Copy code
+pip install colorama reportlab
+Run the Application
+Run the script:
 
-     Travel:
-     No expenses recorded.
-     ```
-
-4. **Monthly Summary**:
-   - Select option `3` and input the desired month and year in `MM-YYYY` format.
-   - Example output:
-     ```
-     Monthly Summary (12-2024):
-     Total Expenses: 200
-     By Category:
-     - Food: 200
-     ```
-
-5. **Exit**:
-   - Select option `4` to exit the application.
-
----
-
-## Instructions for Installation
-
-1. **Dependencies**:
-   - Ensure you have Python 3 installed.
-   - Install the `colorama` library by running:
-     ```bash
-     pip install colorama
-     ```
-
-2. **File Setup**:
-   - The program automatically creates the `expenses.txt` file in the current directory if it does not exist.
-
----
-
-## Notes
-- All expenses are stored in `expenses.txt` in the following format:
-  ```
-  Category,Amount,Date
-  Food,200,2024-12-24
-  Travel,150,2024-12-23
-  ```
-
-- Ensure the file `expenses.txt` is located in the same directory as the script for proper functionality.
-
-- Use valid date formats (YYYY-MM-DD) for adding expenses and (MM-YYYY) for monthly summaries.
-
----
-
-## Future Enhancements
-- Option to export summaries to a CSV or PDF format.
-- Enhanced filtering options by week or custom date range.
-- Support for graphical summaries (e.g., pie charts or bar graphs).
-
+bash
+Copy code
+python expense_tracker.py
+File Structure
+expenses.txt: The app’s database for storing expense records.
+Generated Files
+PDF Report: Exported summaries will be saved in the same directory as Expense_Summary_MM-YYYY.pdf.
+Planned Improvements
+Add more interactive data views (e.g., yearly summaries).
+Include graphs in the exported PDF.
+Provide options to delete or edit specific expense entries.
